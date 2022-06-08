@@ -19,6 +19,7 @@ function submit(event) {
   const zip = document.getElementById('zip').value;
   const feelings = document.getElementById('feelings').value;
 
+  // validate user input
   if (zip === '' || feelings === '')
     return alert('Please enter a zip code or feelings');
 
@@ -132,7 +133,6 @@ const updateUiDynamically = async (url = '') => {
     date.innerHTML = `${fetchedData?.date}`;
     temp.innerHTML = `${Math.round(fetchedData?.temp) + 'degrees'}`;
     content.innerHTML = `${fetchedData?.feelings}`;
-    // !loading &&
   } catch (error) {
     console.error(error);
   }

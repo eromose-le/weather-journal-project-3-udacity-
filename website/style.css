@@ -1,0 +1,173 @@
+body {
+  background: #fffff8;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-small: calc(0.5rem + 0.5vw);
+  --font-medium: calc(1vw + 8px);
+  --font-large: calc(1vw + 16px);
+}
+
+#app {
+  display: grid;
+  grid-auto-rows: minmax(150px, auto);
+  grid-template-columns: 100%;
+  align-content: center;
+  /* height: 100vh; */
+  background: #f23557;
+  color: #f0d43a;
+  justify-content: center;
+  grid-gap: 1em;
+  font-size: 20px;
+  font-family: 'Oswald', sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #eee;
+  width: 100%;
+  height: 100vh;
+  /* height: calc(100vh - 40px); */
+  padding: 20px;
+}
+
+.holder {
+  width: 80%;
+  /* height: 100%; */
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.holder label {
+  color: #212121;
+  padding: 0.5rem;
+  font-size: var(--font-medium);
+}
+
+.entry {
+  border-top: 1px solid #fff;
+  background: #212121;
+  /* margin-top: 1rem; */
+}
+
+#entryHolder {
+  background: #eee;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.entyItems {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.entyItems label {
+  font-size: var(--font-medium);
+  font-weight: 600;
+}
+
+#date,
+#temp,
+#content {
+  font-size: var(--font-large);
+  color: red;
+}
+
+.headline {
+  font-size: var(--font-large);
+  font-weight: 700;
+  color: #fff;
+  background: #212121;
+  border-bottom: #fff;
+  font-family: 'Roboto', sans-serif;
+}
+.title {
+  font-size: var(--font-large) + 10px;
+  /* text-decoration: underline; */
+  padding: 1rem;
+  color: #fff;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+}
+
+/*  Basic Styling To Override Default For Basic HTML Elements */
+
+input {
+  display: block;
+  width: 320px;
+  background: #fff;
+  color: #212121;
+  font-size: var(--font-small);
+  font-family: 'Oswald', sans-serif;
+  border: none;
+  border: 1px solid #212121;
+  padding: 0.5rem 0 0.5rem 1rem;
+}
+
+button {
+  width: 320px;
+  margin: 1rem 0;
+  padding: 0.5rem 0 0.5rem 1rem;
+  background: #aaa;
+  color: #fff;
+  font-size: var(--font-small);
+  font-family: 'Oswald', sans-serif;
+  border: none;
+  box-shadow: 2px 4px 5px #444;
+  cursor: pointer;
+}
+
+button:hover,
+button:focus {
+  transition: ease-in-out 0.5s;
+  background: #121212;
+  outline: #f0d43a;
+}
+h1 {
+  font-size: 36px;
+}
+
+textarea {
+  width: 320px;
+  background: #fff;
+  border: 1px solid #212121;
+  padding: 0.5rem 0 0.5rem 1rem;
+  color: #212121;
+  font-size: var(--font-small);
+  font-family: 'Oswald', sans-serif;
+}
+/* Reset style for HTML element on active to have no border*/
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+/* Style for Placeholder Text*/
+::placeholder {
+  /* Firefox, Chrome, Opera */
+  color: #aaa;
+  font-family: 'Oswald', sans-serif;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #aaa;
+  font-family: 'Oswald', sans-serif;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #aaa;
+  font-family: 'Oswald', sans-serif;
+}

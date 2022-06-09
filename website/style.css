@@ -89,6 +89,11 @@ body {
   color: red;
 }
 
+#error {
+  font-size: var(--font-medium);
+  color: red;
+}
+
 .headline {
   font-size: var(--font-large);
   font-weight: 700;

@@ -21,30 +21,24 @@ function submit(event) {
 
   // validate user input
   if (zip === '' || feelings === '')
-    return alert('Please enter a zip code or feelings');
+    return displayError('Please enter a zip code or feelings');
 
   fetchWeather(weatherApiBaseUrl, zip, apiKey)
     // select values to send to API {date, temp, feelings}
     .then((data) => {
-      try {
-        if (data) {
-          const { temp } = data.list[0].main;
-          const selectedData = {
-            date: currentDate,
-            temp,
-            feelings
-          };
-          return selectedData;
-        }
-      } catch (error) {
-        console.error(error);
-      }
+      displayError('');
+      validateData(data)
+        // use selectedData to query postData()
+        .then((selectedData) => {
+          // post to postData endpoint
+          postData('/addData', selectedData);
+        });
     })
-
-    // use selectedData to query postData()
-    .then((selectedData) => {
-      // post to postData endpoint
-      postData('/addData', selectedData);
+    .catch(() => {
+      displayError('loading..');
+      setTimeout(() => {
+        displayError("Can't fetch weather");
+      }, 4000);
     });
 }
 
@@ -66,9 +60,29 @@ const fetchWeather = async (weatherApiBaseUrl, zip = '2643743', apiKey) => {
     const fetchedData = await res.json();
     return fetchedData;
   } catch (error) {
-    alert(`${error.message}`);
     return console.error(error);
   }
+};
+
+const validateData = async (data) => {
+  try {
+    if (data) {
+      const { temp } = data.list[0].main;
+      const selectedData = {
+        date: currentDate,
+        temp,
+        feelings: feelings.value
+      };
+      return selectedData;
+    }
+  } catch (error) {
+    return console.error(error);
+  }
+};
+
+const displayError = (message) => {
+  const error = document.getElementById('error');
+  error.innerHTML = message;
 };
 
 /**
@@ -90,12 +104,12 @@ const postData = async (url = '', selectedData = {}) => {
   try {
     const fetchedData = await res.json();
     if (fetchedData) {
-      // Update UI dynamically
       updateUiDynamically('/all');
     }
     return fetchedData;
   } catch (error) {
-    console.error(error);
+    displayError('Error getting transmitting weather data');
+    return console.error(error);
   }
 };
 
@@ -111,6 +125,6 @@ const updateUiDynamically = async (url = '') => {
     temp.innerHTML = `${Math.round(fetchedData?.temp) + 'degrees'}`;
     content.innerHTML = `${fetchedData?.feelings}`;
   } catch (error) {
-    console.error(error);
+    return console.error(error);
   }
 };

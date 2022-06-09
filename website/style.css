@@ -11,9 +11,6 @@ body {
   grid-auto-rows: minmax(150px, auto);
   grid-template-columns: 100%;
   align-content: center;
-  /* height: 100vh; */
-  background: #f23557;
-  color: #f0d43a;
   justify-content: center;
   grid-gap: 1em;
   font-size: 20px;
@@ -28,19 +25,23 @@ body {
   background-color: #eee;
   width: 100%;
   height: 100vh;
-  /* height: calc(100vh - 40px); */
   padding: 20px;
+  background-image: url(https://i.gifer.com/KH8F.gif);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .holder {
   width: 80%;
-  /* height: 100%; */
   background: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.95;
 }
 
 .holder label {
@@ -51,12 +52,17 @@ body {
 
 .entry {
   border-top: 1px solid #fff;
+  opacity: 0.9;
   background: #212121;
-  /* margin-top: 1rem; */
+  background-image: url(https://i.gifer.com/KH8F.gif);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain;
 }
 
 #entryHolder {
   background: #eee;
+  opacity: 0.9;
   width: 80%;
   display: flex;
   flex-wrap: wrap;
@@ -93,7 +99,6 @@ body {
 }
 .title {
   font-size: var(--font-large) + 10px;
-  /* text-decoration: underline; */
   padding: 1rem;
   color: #fff;
   font-weight: 700;

@@ -23,17 +23,12 @@ function submit(event) {
   if (zip === '' || feelings === '')
     return alert('Please enter a zip code or feelings');
 
-  convertZipCode(weatherApiBaseUrl, zip, apiKey)
-    // get {lat, lon} values
-    .then((data) =>
-      fetchWeather(weatherApiBaseUrl, data[0].lon, data[0].lat, apiKey)
-    )
-
+  fetchWeather(weatherApiBaseUrl, zip, apiKey)
     // select values to send to API {date, temp, feelings}
     .then((data) => {
       try {
         if (data) {
-          const { temp } = data.main;
+          const { temp } = data.list[0].main;
           const selectedData = {
             date: currentDate,
             temp,
@@ -58,39 +53,21 @@ function submit(event) {
 /**
  *
  * @param {*} weatherApiBaseUrl
- * @param {*} zip
- * @param {*} apiKey
- * @returns
- */
-const convertZipCode = async (weatherApiBaseUrl, zip, apiKey) => {
-  const res = await fetch(
-    `${weatherApiBaseUrl}/geo/1.0/direct?q=${zip}&appid=${apiKey}`
-  );
-  try {
-    const fetchedData = await res.json();
-    return fetchedData;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-/**
- *
- * @param {*} weatherApiBaseUrl
  * @param {*} lon
  * @param {*} lat
  * @param {*} apiKey
  * @returns
  */
-const fetchWeather = async (weatherApiBaseUrl, lon, lat, apiKey) => {
+const fetchWeather = async (weatherApiBaseUrl, zip = '2643743', apiKey) => {
   const res = await fetch(
-    `${weatherApiBaseUrl}/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`
+    `${weatherApiBaseUrl}/data/2.5/forecast?id=${zip}&appid=${apiKey}`
   );
   try {
     const fetchedData = await res.json();
     return fetchedData;
   } catch (error) {
-    console.error(error);
+    alert(`${error.message}`);
+    return console.error(error);
   }
 };
 

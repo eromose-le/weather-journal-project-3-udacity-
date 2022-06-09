@@ -9,7 +9,7 @@ const generate = document.getElementById('generate');
 
 // Date instance
 let d = new Date();
-let currentDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
+let currentDate = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear();
 
 // Submit button trigger
 generate.addEventListener('click', submit);
